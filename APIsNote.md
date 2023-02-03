@@ -26,9 +26,21 @@
 
 ## HTTP Requests
 - **H**ypertext **T**ransfer **P**rotocal
-- A protocol for determining how hypertext should be transferred over the internet
+- A `protocol` for determining how hypertext should be transferred over the internet
+
 - Components of a request: 
     1. Path/URL
     2. Methods: GET, POST, PUT, DELETE
     3. Body
     4. Headers
+
+### Path
+- `Address` where the resouce lives
+- Full URL = `Base URL` + `Endpoint`
+
+### Methods
+- Tell the server what kind of request we are making
+- `GET`: getting data
+- `POST`: adding new data
+- `PUT`: updating existing data
+- `DELETE`: removing data
