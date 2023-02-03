@@ -23,3 +23,12 @@
 ## Request-Response Cycle
 - `Request`: A device asks for a "resource", it requires a connection to the internet somehow
 - `Response`: The reply to the request, could contain the `resource` (HTML, JSON data, etc...), could contain the a response saying the client is not authorized to receive the resource
+
+## HTTP Requests
+- **H**ypertext **T**ransfer **P**rotocal
+- A protocol for determining how hypertext should be transferred over the internet
+- Components of a request: 
+    1. Path/URL
+    2. Methods: GET, POST, PUT, DELETE
+    3. Body
+    4. Headers
