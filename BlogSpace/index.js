@@ -41,5 +41,15 @@ submitForm.addEventListener("submit", (event) => {
         }
     })
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data)
+            // Update the DOM with the new blog entry
+            const postsEl = document.getElementById("posts-list")
+            postsEl.innerHTML = `
+                <h3>${data.title}</h3>
+                <p>${data.body}</p>
+                <hr />
+                ${postsEl.innerHTML}
+            `
+        })
 })
