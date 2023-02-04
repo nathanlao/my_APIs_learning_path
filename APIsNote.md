@@ -9,12 +9,12 @@
 
 ## API examples
 1. Getting data from a server (server and database that live outside of my device)
-- The server hosts `an API` - exposed `endpoints` we can access fro getting data from the server
-- Note that the server does not give us access to everything, just the things they want us to have (security concern)
+    - The server hosts `an API` - exposed `endpoints` we can access fro getting data from the server
+    - Note that the server does not give us access to everything, just the things they want us to have (security concern)
 
 2. Pre-written code that does cool things
-- DOM API (.getElementById)
-- Array methods API (.filter, .map, localStorage, etc...)
+    - DOM API (.getElementById)
+    - Array methods API (.filter, .map, localStorage, etc...)
 
 ## Clients vs. Servers
 - `Client`: Any device that connects to the internet to get data from somewhere (makes a `request`)
@@ -44,3 +44,13 @@
 - `POST`: adding new data
 - `PUT`: updating existing data
 - `DELETE`: removing data
+
+### Body
+- The data we want to send to server
+- Only makes sense with `POST` and `PUT` requests
+- Needs to be turnede into `JSON` first
+
+### Headers
+- Extra/meta information about the outgoing request
+- Auth, body info, client info, etc...
+
