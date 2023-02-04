@@ -16,3 +16,19 @@ fetch("https://jsonplaceholder.typicode.com/posts", {method: "GET"})
             `
         })
     })
+
+// Listen for submit event
+const submitForm = document.getElementById("submit-post")
+
+submitForm.addEventListener("submit", (event) => {
+    event.preventDefault()
+
+    const title = document.getElementById("post-title")
+    const body = document.getElementById("post-body")
+
+    const postObj = {
+        title: title.value,
+        body: body.value
+    }
+    console.log(postObj)
+})
