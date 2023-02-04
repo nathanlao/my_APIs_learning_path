@@ -1,8 +1,11 @@
 let postsArray = []
+const title = document.getElementById("post-title")
+const body = document.getElementById("post-body")
+const submitForm = document.getElementById("submit-post")
 
 function renderPosts() {
     const postsEl = document.getElementById("posts-list")
-    
+
     let html = ""
     postsArray.forEach(post => {
         html += `
@@ -26,13 +29,8 @@ fetch("https://jsonplaceholder.typicode.com/posts", {method: "GET"})
     })
 
 // Listen for submit event
-const submitForm = document.getElementById("submit-post")
-
 submitForm.addEventListener("submit", (event) => {
     event.preventDefault()
-
-    const title = document.getElementById("post-title")
-    const body = document.getElementById("post-body")
 
     const postObj = {
         title: title.value,
@@ -50,10 +48,13 @@ submitForm.addEventListener("submit", (event) => {
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data)
+            // console.log(data)
 
             // Update the DOM with the new blog entry
             postsArray.unshift(data)
             renderPosts()
+
+            // Clear out the form
+            submitForm.reset()
         })
 })
