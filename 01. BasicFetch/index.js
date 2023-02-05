@@ -8,3 +8,8 @@ fetch("https://dog.ceo/api/breeds/image/random")
         `
     })
 
+
+// GET the current weather for your city with the Open Weather API
+fetch("https://api.openweathermap.org/data/2.5/weather?lat=49.278325&lon=-122.963704&units=metric")
+    .then(res => res.json())
+    .then(data => console.log(data))

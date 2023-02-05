@@ -28,7 +28,7 @@
 - **H**ypertext **T**ransfer **P**rotocal
 - A `protocol` for determining how hypertext should be transferred over the internet
 
-- Components of a request: 
+- `Components` of a request: 
     1. Path/URL
     2. Methods: GET, POST, PUT, DELETE
     3. Body
@@ -53,4 +53,26 @@
 ### Headers
 - Extra/meta information about the outgoing request
 - Auth, body info, client info, etc...
+
+## REST
+- **RE**presentational **S**tate **T**ransfer
+- REST is a `design pattern` to provide a standard way for clients and servers to communicate
+
+### Principles of REST
+1. Client & Server separation
+    - Client request `JSON data` from the server and the server would respond with `JSON data`, in this setup, the server **doesn't care** how that JSON data gets used in client side (NOT using `server rendering`)
+
+2. Statelessness
+    - When a client makes a request to a server, the server doesn't maintain any memory of the request (forget the interaction after the response is sent)
+
+3. Accessing "Resources"
+    - The entire interaction between client and server using `standardized URL endpoints`: easier for a developer to understand an API and what should be coming back from that API
+        - Using `nouns` for endpoints (e.g. baseURL + /phones, baseURL + /phones/:id)
+        - `verbs` for request methods
+    - Nested resources: (e.g. /phones/123/reviews - return an array of reviews of that specific phone)
+
+### Query Strings/Parameters
+- A way to filter results (produce an object)
+- e.g. /phones?type=lastest
+- e.g. /phones?type=lastest&brand=apple
 
