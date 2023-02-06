@@ -4,12 +4,24 @@ const colorScheme = document.getElementById("color-scheme")
 
 const getColorSubmit = document.getElementById("color-scheme-form")
 
+// Set a default value for color picker
+colorPicker.value = "#cdb4db"
 
-function renderColor(data) {
+function getColorsFromAPI(hex, mode) {
+    const url = `https://www.thecolorapi.com/scheme?hex=${hex}&mode=${mode}`
+
+    fetch(url, {method: "GET"})
+        .then(response => response.json())
+        .then(data => {
+            renderColor(data.colors)
+        })
+}
+
+
+// Functon to render colors array
+function renderColor(colorsArray) {
     let html = ""
-    data.colors.forEach(color => {
-        console.log(color.hex.value)
-
+    colorsArray.forEach(color => {
         html += `
             <div>
                 <div class="color" 
@@ -27,13 +39,7 @@ getColorSubmit.addEventListener("submit", (e) => {
 
     const hex = colorPicker.value.slice(1)
     const mode = colorSelector.value.toLowerCase()
-    const url = `https://www.thecolorapi.com/scheme?hex=${hex}&mode=${mode}`
-
-    fetch(url, {method: "GET"})
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-
-            renderColor(data)
-        })
+    getColorsFromAPI(hex, mode)
 })
+
+getColorsFromAPI("cdb4db", "monochrome")
