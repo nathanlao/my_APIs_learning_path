@@ -9,19 +9,38 @@ const copyText = document.getElementById("copy-text")
 // Set a default value for color picker
 colorPicker.value = "#cdb4db"
 
-colorScheme.addEventListener("mouseover", () => {
-    copyText.textContent = "Click text to copy"
-    copyText.style.display = "block"
-    copyText.style.opacity = 1
+colorScheme.addEventListener("mouseover", (e) => {
+    if(e.target.classList.contains("color")){
+        copyText.textContent = "Click color to copy"
+        copyText.style.display = "block"
+        copyText.style.opacity = 1
+    }
 })
 
-colorScheme.addEventListener("mouseout", () => {
-    copyText.style.display = "none"
+colorScheme.addEventListener("mouseout", (e) => {
+    if(e.target.classList.contains("color")){
+        copyText.style.opacity = 0
+    }
+})
+
+colorScheme.addEventListener("click", (e) => {
+    if(e.target.classList.contains("color")){
+        // Access the textcontent of the target style, take the hex value
+        copyColor(e.target.attributes.style.textContent.split(" ")[1])
+
+        copyText.textContent = "Copied to clipboard"
+        
+        setTimeout(() => {
+            copyText.style.opacity = 0
+        }, 1000)
+    }   
 })
 
 function copyColor(hexColor) {
+    // Create temp input element
     const tempInput = document.createElement("input")
     tempInput.value = hexColor
+    
     document.body.appendChild(tempInput)
     tempInput.select()
     document.execCommand("copy")
@@ -48,7 +67,7 @@ function renderColor(colorsArray) {
                 <div class="color" 
                     style="background-color: ${color.hex.value}">
                 </div>
-                <p class="hex" onclick="copyColor('${color.hex.value}')">${color.hex.value}</p>
+                <p class="hex">${color.hex.value}</p>
             </div>
         `
     })
