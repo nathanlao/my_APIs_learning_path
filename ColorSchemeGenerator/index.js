@@ -4,8 +4,29 @@ const colorScheme = document.getElementById("color-scheme")
 
 const getColorSubmit = document.getElementById("color-scheme-form")
 
+const copyText = document.getElementById("copy-text")
+
 // Set a default value for color picker
 colorPicker.value = "#cdb4db"
+
+colorScheme.addEventListener("mouseover", () => {
+    copyText.textContent = "Click text to copy"
+    copyText.style.display = "block"
+    copyText.style.opacity = 1
+})
+
+colorScheme.addEventListener("mouseout", () => {
+    copyText.style.display = "none"
+})
+
+function copyColor(hexColor) {
+    const tempInput = document.createElement("input")
+    tempInput.value = hexColor
+    document.body.appendChild(tempInput)
+    tempInput.select()
+    document.execCommand("copy")
+    document.body.removeChild(tempInput)
+}
 
 function getColorsFromAPI(hex, mode) {
     const url = `https://www.thecolorapi.com/scheme?hex=${hex}&mode=${mode}`
@@ -27,7 +48,7 @@ function renderColor(colorsArray) {
                 <div class="color" 
                     style="background-color: ${color.hex.value}">
                 </div>
-                <p class="hex">${color.hex.value}</p>
+                <p class="hex" onclick="copyColor('${color.hex.value}')">${color.hex.value}</p>
             </div>
         `
     })
