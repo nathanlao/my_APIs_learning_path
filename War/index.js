@@ -48,6 +48,12 @@ function getNewCard() {
 
             // Render remaining cards 
             remainingEl.textContent = `Remaining cards: ${data.remaining}`
+
+            // Disable the button when no more cards
+            if (data.remaining === 0) {
+                newCard.disabled = true
+                newCard.style.cursor = "not-allowed"
+            }
         })
 }
 
