@@ -36,8 +36,13 @@ body {
 }
 
 /* self aligned the child component: cards div in the flex */
-#cards{
+#cards,
+#winner {
     align-self: center;
+}
+
+#winner {
+    color: white;
 }
 
 .card-slot {
