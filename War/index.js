@@ -59,6 +59,15 @@ function getNewCard() {
             if (data.remaining === 0) {
                 newCard.disabled = true
                 newCard.style.cursor = "not-allowed"
+
+                // Final result!
+                if (computerScore > userScore) {
+                    winnerEl.textContent = "The computer won the game!"
+                } else if (computerScore < userScore) {
+                    winnerEl.textContent = "You won the game!"
+                } else {
+                    winnerEl.textContent = "This is a tie game!"
+                }
             }
         })
 }
@@ -84,8 +93,6 @@ function getWinner(cardObj1, cardObj2) {
         return "Tie game!"
     }
 }
-
-
     
 newDeck.addEventListener("click", getNewDeck)
 
