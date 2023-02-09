@@ -1,6 +1,7 @@
 const newDeck = document.getElementById("new-deck")
 const newCard = document.getElementById("new-card")
 const winnerEl = document.getElementById("winner")
+const remainingEl = document.getElementById("remaining-cards")
 
 // Saving deck_id from the returned data
 let deckId
@@ -9,7 +10,7 @@ function getNewDeck() {
     fetch("https://www.deckofcardsapi.com/api/deck/new/shuffle")
         .then(res => res.json())
         .then(data => {
-            // console.log(data)
+            console.log(data)
             deckId = data.deck_id
         })
 }
@@ -41,6 +42,9 @@ function getNewCard() {
             // Determine the winner and render DOM element accordingly
             const winnerMsg = getWinner(data.cards[0], data.cards[1])
             winnerEl.textContent = winnerMsg
+
+            // Render remaining cards 
+            remainingEl.textContent = `Remaining cards: ${data.remaining}`
         })
 }
 
@@ -61,6 +65,8 @@ function getWinner(cardObj1, cardObj2) {
         return "Tie game!"
     }
 }
+
+
     
 newDeck.addEventListener("click", getNewDeck)
 
