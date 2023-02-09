@@ -5,6 +5,11 @@
     - `Fullfilled`: The promise was completed as promised (e.g. .then() when the promise has been resolved)
     - `Rejected`: The promise was not completed as promised
 
+## Why and When to use Promise
+- Promises are used in JS to `handle asynchronous operations`, which are operations that run in the background and `do not block` the main execution of the program. 
+- This is useful when working with `resource-intensive operations`, such as `network request` or `file I/O`. (e.g. `fetch` data from a server)
+
+
 ## .then()
 - It takes in a callback function and will run it as soon as the promises is in  `fulfilled` state, and immediately returns an `Promise object`
-- Use `sequential` .then(), whatever its callback function returns, is what `the next .then()` will receive `as a parameter` to its callback function
+- Allows to chain multiple async operations by using `sequential` .then(), whatever its callback function returns, is what `the next .then()` will receive `as a parameter` to its callback function
