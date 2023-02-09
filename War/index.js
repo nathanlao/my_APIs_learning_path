@@ -2,9 +2,15 @@ const newDeck = document.getElementById("new-deck")
 const newCard = document.getElementById("new-card")
 const winnerEl = document.getElementById("winner")
 const remainingEl = document.getElementById("remaining-cards")
+const computerScoreEl = document.getElementById("computer-score")
+const userScoreEl = document.getElementById("user-score")
 
 // Saving deck_id from the returned data
 let deckId
+
+// Keep track of score
+let computerScore = 0
+let userScore = 0
 
 function getNewDeck() {
     fetch("https://www.deckofcardsapi.com/api/deck/new/shuffle")
@@ -67,8 +73,12 @@ function getWinner(cardObj1, cardObj2) {
     // console.log("card 2:", card2ValueIndex)
 
     if (card1ValueIndex > card2ValueIndex) {
+        computerScore++
+        computerScoreEl.textContent = `Computer score: ${computerScore}`
         return "Computer wins!"
     } else if (card1ValueIndex < card2ValueIndex) {
+        userScore++
+        userScoreEl.textContent = `My score: ${userScore}`
         return "You win!"
     } else {
         return "Tie game!"

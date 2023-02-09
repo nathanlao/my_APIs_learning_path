@@ -37,11 +37,15 @@ body {
 
 /* self aligned the child component: cards div in the flex */
 #cards,
-#winner {
+#winner,
+#computer-score,
+#user-score {
     align-self: center;
 }
 
-#winner {
+#winner,
+#computer-score,
+#user-score {
     color: white;
 }
 
@@ -54,7 +58,7 @@ body {
 }
 
 .card-slot:nth-of-type(1) {
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .card {
@@ -70,5 +74,9 @@ body {
 .top p {
     color: white;
     margin: 0;
+}
+
+h2 {
+    margin: 5px;
 }
 
