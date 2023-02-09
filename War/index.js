@@ -1,6 +1,6 @@
 const newDeck = document.getElementById("new-deck")
 const newCard = document.getElementById("new-card")
-const cardEl = document.getElementById("cards")
+const cardsEl = document.getElementById("cards")
 
 // Saving deck_id from the returned data
 let deckId
@@ -19,12 +19,13 @@ function getNewCard() {
         .then(res => res.json())
         .then(data => {
             console.log(data)
+
             let html = ""
             html += `
-                <img src="${data.cards[0].image}" alt="card image">
-                <img src="${data.cards[1].image}" alt="card image">
+                <img src="${data.cards[0].image}" alt="card image" />
+                <img src="${data.cards[1].image}" alt="card image" />
             `
-            cardEl.innerHTML = html
+            cardsEl.innerHTML = html
         })
 }
     

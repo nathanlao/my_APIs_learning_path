@@ -1,0 +1,36 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Exo 2", sans-serif;
+    background-color: #606c38;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.new-deck-btn,
+.new-card-btn {
+    font-family: inherit;
+    background-color: #d6ccc2;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.new-deck-btn {
+    align-self: flex-start;
+}
+
+.new-card-btn {
+    font-size: 1.2rem;
+}
+
