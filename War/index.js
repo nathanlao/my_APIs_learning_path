@@ -12,6 +12,9 @@ function getNewDeck() {
         .then(data => {
             console.log(data)
             deckId = data.deck_id
+
+            // Render remaining cards as soon as we click new deck
+            remainingEl.textContent = `Remaining cards: ${data.remaining}`
         })
 }
 
