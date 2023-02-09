@@ -12,64 +12,61 @@ let deckId
 let computerScore = 0
 let userScore = 0
 
-function getNewDeck() {
-    fetch("https://www.deckofcardsapi.com/api/deck/new/shuffle")
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            deckId = data.deck_id
+async function getNewDeck() {
+    const response = await fetch("https://www.deckofcardsapi.com/api/deck/new/shuffle")
+    const data = await response.json()    
+    // console.log(data)
 
-            // Render remaining cards as soon as we click new deck
-            remainingEl.textContent = `Remaining cards: ${data.remaining}`
-        })
+    deckId = data.deck_id
+
+    // Render remaining cards as soon as we click new deck
+    remainingEl.textContent = `Remaining cards: ${data.remaining}`
 }
 
-function getNewCard() {
-    fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=2`)
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
+async function getNewCard() {
+    const response = await fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=2`)
+    const data = await response.json()
+    // console.log(data)
 
-            // Access the cards element and get its own children HTML collection
-            const cardsContainer = document.getElementById("cards")
-            const firstCardSlot = cardsContainer.children[0]
-            const secondCardSlot = cardsContainer.children[1]
-            
-            //  Render the first card and second card to their own div tag
-            let firstCardhtml = ""
-            firstCardhtml += `
-                <img src="${data.cards[0].image}" alt="card image" class="card"/>
-            `
-            firstCardSlot.innerHTML = firstCardhtml
+    // Access the cards element and get its own children HTML collection
+    const cardsContainer = document.getElementById("cards")
+    const firstCardSlot = cardsContainer.children[0]
+    const secondCardSlot = cardsContainer.children[1]
+    
+    //  Render the first card and second card to their own div tag
+    let firstCardhtml = ""
+    firstCardhtml += `
+        <img src="${data.cards[0].image}" alt="card image" class="card"/>
+    `
+    firstCardSlot.innerHTML = firstCardhtml
 
-            let secondCardhtml = ""
-            secondCardhtml += `
-                <img src="${data.cards[1].image}" alt="card image" class="card"/>
-            `
-            secondCardSlot.innerHTML = secondCardhtml
+    let secondCardhtml = ""
+    secondCardhtml += `
+        <img src="${data.cards[1].image}" alt="card image" class="card"/>
+    `
+    secondCardSlot.innerHTML = secondCardhtml
 
-            // Determine the winner and render DOM element accordingly
-            const winnerMsg = getWinner(data.cards[0], data.cards[1])
-            winnerEl.textContent = winnerMsg
+    // Determine the winner and render DOM element accordingly
+    const winnerMsg = getWinner(data.cards[0], data.cards[1])
+    winnerEl.textContent = winnerMsg
 
-            // Render remaining cards 
-            remainingEl.textContent = `Remaining cards: ${data.remaining}`
+    // Render remaining cards 
+    remainingEl.textContent = `Remaining cards: ${data.remaining}`
 
-            // Disable the button when no more cards
-            if (data.remaining === 0) {
-                newCard.disabled = true
-                newCard.style.cursor = "not-allowed"
+    // Disable the button when no more cards
+    if (data.remaining === 0) {
+        newCard.disabled = true
+        newCard.style.cursor = "not-allowed"
 
-                // Final result!
-                if (computerScore > userScore) {
-                    winnerEl.textContent = "The computer won the game!"
-                } else if (computerScore < userScore) {
-                    winnerEl.textContent = "You won the game!"
-                } else {
-                    winnerEl.textContent = "This is a tie game!"
-                }
-            }
-        })
+        // Final result!
+        if (computerScore > userScore) {
+            winnerEl.textContent = "The computer won the game!"
+        } else if (computerScore < userScore) {
+            winnerEl.textContent = "You won the game!"
+        } else {
+            winnerEl.textContent = "This is a tie game!"
+        }
+    }
 }
 
 function getWinner(cardObj1, cardObj2) {
