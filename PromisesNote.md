@@ -1,7 +1,7 @@
 ## Promise in JavaScript
-- A Promise in JS is an `object` representing the `eventual completion` or `failure` of an asynchronous opertion. It has `.then()` method to specify what should happen when the operation is resolved/rejected
+- A Promise in JS is an `object` representing the `eventual completion` or `failure` of an asynchronous opertion. It has `.then()` method to specify what should happen (and will `only run`) when the operation is `resolved/rejected`
 - 3 Stages:
-    - `Pending`: The promise has not yet completed (e.g. fetch() return a promise back)
+    - `Pending`: The promise has not yet completed (e.g. fetch() return a promise object back)
     - `Fullfilled`: The promise was completed as promised (e.g. .then() when the promise has been resolved)
     - `Rejected`: The promise was not completed as promised
 
@@ -10,6 +10,11 @@
 - This is useful when working with `resource-intensive operations`, such as `network request` or `file I/O`. (e.g. `fetch` data from a server)
 
 
-## .then()
-- It takes in a callback function and will run it as soon as the promises is in  `fulfilled` state, and immediately returns an `Promise object`
+## Promise Resolved `.then()`
+- It takes in a callback function and will `only` run it as soon as the promises is in `fulfilled` state, and immediately returns an `Promise object`
 - Allows to chain multiple async operations by using `sequential` .then(), whatever its callback function returns, is what `the next .then()` will receive `as a parameter` to its callback function
+
+## Promise Rejected `.catch()`
+- A promise becomes `rejected` if an `error` is thrown inside any of the `.then()` blocks or if a programmer manually calls `Promise.reject()`
+
+        .catch(error => console.error(error))

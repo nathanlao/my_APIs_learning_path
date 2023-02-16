@@ -8,7 +8,6 @@ html, body {
 }
 
 body {
-    padding: 15px;
     background: no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -20,6 +19,7 @@ body {
 }
 
 main {
+    padding: 15px;
     height: 100vh;
     display: flex;
     flex-direction: column;
