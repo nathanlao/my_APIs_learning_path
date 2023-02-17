@@ -18,3 +18,6 @@
 - A promise becomes `rejected` if an `error` is thrown inside any of the `.then()` blocks or if a programmer manually calls `Promise.reject()`
 
         .catch(error => console.error(error))
+
+- Check for error response
+    - Anything in 400 or 500 level range for HTTP status, `res.ok` will be **false**
