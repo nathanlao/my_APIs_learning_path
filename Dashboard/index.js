@@ -17,3 +17,35 @@ fetch("https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&que
         
         document.getElementById("author").textContent = `By: Mohamed Nohassi`
     })
+
+
+// Fetch cryptocurrency data for dogecoin from CoinGecko API
+fetch("https://api.coingecko.com/api/v3/coins/dogecoin")
+    .then(res => {
+        // console.log(res.ok)
+        // console.log(res.status) 
+
+        // Trigger the catch block
+        if (!res.ok) {
+            throw Error("Something went wrong")
+        }
+        return res.json()
+    })
+    .then(data => {
+        console.log(data)
+
+        const cryptoTop = document.getElementById("crypto-top")
+        cryptoTop.innerHTML = `
+            <img alt="coin image" src="${data.image.small}"/>
+            <span>${data.name}</span>
+        `
+
+        document.getElementById("crypto").innerHTML += `
+            <p>Current price: $${data.market_data.current_price.cad}</p>
+            <p>24h high price: $${data.market_data.high_24h.cad}</p>
+            <p>24h low price: $${data.market_data.low_24h.cad}</p>
+        ` 
+    })
+    .catch(err => {
+        console.error(err)
+    })
