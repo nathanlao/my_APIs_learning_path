@@ -49,3 +49,16 @@ fetch("https://api.coingecko.com/api/v3/coins/dogecoin")
     .catch(err => {
         console.error(err)
     })
+
+// let hours = date.getHours()
+// let minutes = date.getMinutes()
+// let ampm = hours >= 12 ? "PM" : "AM"
+// hours = hours % 12
+// hours = hours ? hours : 12
+// let timeString = hours + ":" + minutes + " " + ampm
+
+setInterval(() => {
+    const date = new Date()
+    const formattedDate = date.toLocaleTimeString("en-US", {timeStyle: "medium"})
+    document.getElementById("time").textContent = formattedDate
+}, 1000)
