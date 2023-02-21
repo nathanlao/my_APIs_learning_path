@@ -53,3 +53,28 @@ div#crypto > p {
     font-size: 1rem;
     margin: 0;
 }
+
+div#weather {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    align-self: flex-start;
+}
+
+div#weather > img {
+    width: 70px;
+}
+
+p.city {
+    margin: 0;
+    width: 100%;
+    text-align: right;
+    margin-top: -10px;
+}
+
+p.temp {
+    margin: 0;
+    font-size: 1.7rem;
+    margin-left: -10px;
+}

@@ -32,7 +32,7 @@ fetch("https://api.coingecko.com/api/v3/coins/dogecoin")
         return res.json()
     })
     .then(data => {
-        console.log(data)
+        // console.log(data)
 
         const cryptoTop = document.getElementById("crypto-top")
         cryptoTop.innerHTML = `
@@ -62,3 +62,30 @@ setInterval(() => {
     const formattedDate = date.toLocaleTimeString("en-US", {timeStyle: "medium"})
     document.getElementById("time").textContent = formattedDate
 }, 1000)
+
+// Get current location
+navigator.geolocation.getCurrentPosition((position) => {
+    const lat = position.coords.latitude
+    const lon = position.coords.longitude
+
+    fetch(`https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric`)
+        .then(res => {
+            if (!res.ok) {
+                throw Error("Weather data not available")
+            }
+            return res.json()
+        })
+        .then(data => {
+            console.log(data)
+            const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
+
+            const weatherEl = document.getElementById("weather")
+            weatherEl.innerHTML = `
+                <img alt="weather icon" src="${iconUrl}" />
+                <p class="temp">${Math.round(data.main.temp)}ºC</p>
+                <p class="city">${data.name}</p>
+            `
+        })
+        .catch(err => console.error(err))
+  });
+
